@@ -1,10 +1,7 @@
 const cron = require('node-cron');
-
-let times = 0;
-
-cron.schedule('1-59/5 * * * * *', () => {
-    times++;
-  console.log('Corriendo cada 5 segundos', times);
-});
+const { syncDB } = require('./tasks/asyn-db');
 
 console.log('Inicio en image docker');
+
+cron.schedule('1-59/5 * * * * *', syncDB);
+
